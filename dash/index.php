@@ -1,4 +1,4 @@
-<?php $con=mysqli_connect("localhost","user","password","database");
+<?php $con=mysqli_connect("localhost","battery","robot","Test");
 
 $date = date ('H:i:s');
 
@@ -26,16 +26,16 @@ $b2 = $_POST['b2'];
 $b3 = $_POST['b3'];
 
 $sql = "INSERT INTO `event` (`match`, `time`, `r1`, `r2`, `r3`, `b1`, `b2`, `b3`)
-VALUES ('$match', '" . $time . "', '" . $r1 . "', '" . $r2 . "', '" . $r3 . "', '" . $b1 . "', '" . $b2 . "', '" . $b3 . "')";
+VALUES ('" . $match . "', '" . $time . "', '" . $r1 . "', '" . $r2 . "', '" . $r3 . "', '" . $b1 . "', '" . $b2 . "', '" . $b3 . "')";
 
 $con->query($sql);
 }
 ?>
 <html>
 <head>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/dashboard.css" rel="stylesheet">
-<script src="/js/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/dashboard.css" rel="stylesheet">
+<script src="js/bootstrap.min.js"></script>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Dash</title>
