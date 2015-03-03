@@ -33,10 +33,10 @@ $con->query($sql);
 ?>
 <html>
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/dashboard.css" rel="stylesheet">
-<script src="js/bootstrap.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/dashboard.css" rel="stylesheet">
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery-2.1.3.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Dash</title>
 </head>
