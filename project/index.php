@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<?php include('weather.php'); ?>
 <html>
 	<head>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/countdown.js"></script>
 		<script src="js/custom.js"></script>
-		<link href="css/weather-icons.css" rel="stylesheet">
+		<link href="css/weather-icons.min.css" rel="stylesheet">
 		<script> // Set Custom Variables Here </script>
 		<style>
 			* {
@@ -50,7 +51,6 @@
 				text-align: right;
 			}
 			#header-weather-text {
-				display: inline-block;
 				height: 100%;
 				float: right;
 			}
@@ -65,18 +65,24 @@
 				font-size: 12pt;
 				text-align: left;
 			}
-			#content {}
+			#content {
+				
+			}
 
 			#footer {
 				position: fixed;
 				bottom: 0px;
 				width: 100%;
-				height: 200px;
+				/*height: 200px; */
 				color: white;
 				font-size: 36pt;
 			}
 			#footer-table {
-				width: 50%;
+				width: 100%;
+				height: 100%;
+			}
+			#footer-logo img{
+				width: 100%;
 			}
 			.red {
 				background-color: red;
@@ -115,7 +121,8 @@
 					-5&deg;F
 					</div>
 					<div id="header-weather-location">
-						Minneapolis
+						Minneapolis, MN
+						<?php // weather('Minneapolis', 'mn', 'city'); ?>
 					</div>
 				</div>
 				<div id="header-weather-icon">
@@ -148,9 +155,10 @@
 					</tr>
 				</table>
 			</div>
-			<div id="footer-logo">
+			<!--<div id="footer-logo">
+				Hello World
 				<img src="predator-head.png" />
-			</div>
+			</div>-->
 		</div>
 		
 	</body>
