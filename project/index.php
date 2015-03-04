@@ -4,9 +4,12 @@
 	<head>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/countdown.js"></script>
-		<script src="js/custom.js"></script>
 		<link href="css/weather-icons.min.css" rel="stylesheet">
-		<script> // Set Custom Variables Here </script>
+		<script>
+			$.get( "ajax/weather.php", function( data ) {
+				$( "#header-weather" ).html( data );
+			});
+		</script>
 		<style>
 			* {
 				margin: 0;
@@ -73,17 +76,33 @@
 				position: fixed;
 				bottom: 0px;
 				width: 100%;
-				/*height: 200px; */
+				height: 315px;
 				color: white;
 				font-size: 36pt;
+				overflow: hidden;
 			}
 			#footer-table {
-				width: 100%;
+				width: 50%;
 				height: 100%;
+				float: left;
 			}
-			#footer-logo img{
-				width: 100%;
+			
+			#footer-logo {
+				float: right;
+				width: 50%;
 			}
+			
+			#footer-logo {
+				width: 50%;
+				height: 100%;
+				text-align: center;
+			}
+			
+			#footer-logo img {
+				max-height: 100%;
+				max-width: 100%;
+			}
+			
 			.red {
 				background-color: red;
 			}
@@ -101,14 +120,12 @@
 			}
 			#footer-now-playing {
 				border-spacing: 0;
-				position: fixed;
-				bottom: 0px;
-				height: 200px;
+				width: 100%;
 			}
 		</style>
 	</head>
 	
-	<body>
+	<body onload="checkWeather; setInterval(function(){checkWeather()},600000);">
 		<div id="header">
 		
 			<div id="header-brand">
@@ -116,18 +133,6 @@
 			</div>
 			
 			<div id="header-weather">
-				<div id="header-weather-text">
-					<div id="header-weather-temp">
-					-5&deg;F
-					</div>
-					<div id="header-weather-location">
-						Minneapolis, MN
-						<?php // weather('Minneapolis', 'mn', 'city'); ?>
-					</div>
-				</div>
-				<div id="header-weather-icon">
-					<i class="wi wi-cloudy" style="font-size: 64pt;"></i>
-				</div>
 			</div>
 			
 		</div>
@@ -139,6 +144,9 @@
 		</div>
 		
 		<div id="footer">
+			<div id="footer-logo">
+				<img src="predator-head.png" />
+			</div>
 			<div id="footer-table">
 				<table id="footer-now-playing">
 					<tr>
@@ -155,10 +163,7 @@
 					</tr>
 				</table>
 			</div>
-			<!--<div id="footer-logo">
-				Hello World
-				<img src="predator-head.png" />
-			</div>-->
+
 		</div>
 		
 	</body>
