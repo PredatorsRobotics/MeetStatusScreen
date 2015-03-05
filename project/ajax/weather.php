@@ -1,7 +1,6 @@
 <?php
-
-	$city = 'Glencoe';
-	$state = 'MN';
+	
+	include '../settings.php';
 	
 	$url = "http://api.openweathermap.org/data/2.5/weather?q=" . $city  . "," . $state;
 	
@@ -12,6 +11,7 @@
 	$zero = $weather[0];
 	$icon = $zero['icon'];
 	$main = $data['main'];
+	$description = $zero['description'];
 	$kelvin = $main['temp'];
 	$fahrenheit = ($kelvin - 273.15) * 9 / 5 + 32;
 	$rankine = ($fahrenheit + 459.67);
@@ -21,8 +21,20 @@
 	$kelvin_rounded = round($kelvin);
 	$celsius_rounded = round($celsius);
 	$rankine_rounded = round($rankine);
-	
-	include 'temperature.php' ;
+	switch ($unit) {
+	    case "F":
+	        $temp = $fahrenheit_rounded  . "&deg;F";
+	        break;
+	    case "C":
+	        $temp = $celsius_rounded  . "&deg;C";
+	        break;
+	    case "K":
+	        $temp = $kelvin_rounded  . "&deg;K";
+	        break;
+	    case "R":
+	        $temp = $rankine_rounded  . "&deg;R";
+	        break;
+	}
 	
 	//NEED TO DO: POPULATE WEATHER CONDITIONS
 
@@ -39,6 +51,12 @@
 	    case "04d":
 	        $wi = "wi-cloudy";
 	        break;
+	    case "09d":
+	        $wi = "wi-rain";
+	        break;
+	    case "50d":
+	        $wi = "wi-fog";
+	        break;
 	        
 	        
 	    case "01n":
@@ -53,6 +71,15 @@
 	    case "04n":
 	        $wi = "wi-cloudy";
 	        break;
+	    case "09n":
+	        $wi = "wi-rain";
+	        break;
+	    case "50n":
+	        $wi = "wi-fog";
+	        break;
+	    default:
+	    	$wi = "wi-alien";
+	    	break;
 	}
 
 ?>
@@ -62,6 +89,8 @@
 					</div>
 					<div id="header-weather-location">
 						<?php echo $city . ', ' . $state; ?>
+						<br>
+						<?php echo $description; ?>
 					</div>
 				</div>
 				<div id="header-weather-icon">
