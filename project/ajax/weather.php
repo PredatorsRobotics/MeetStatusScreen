@@ -21,6 +21,11 @@
 	$kelvin_rounded = round($kelvin);
 	$celsius_rounded = round($celsius);
 	$rankine_rounded = round($rankine);
+	
+	if($fahrenheit_rounded == "-0"){ //You need a double equals sign == did  forget that?
+		$fahrenheit_rounded = 0;
+	}
+	
 	switch ($unit) {
 	    case "F":
 	        $temp = $fahrenheit_rounded  . "&deg;F";
