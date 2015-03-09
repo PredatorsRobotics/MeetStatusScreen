@@ -15,18 +15,16 @@ if(! $retval )
 
 if(isset($_POST['m'])){
 $match = $_POST['m'];
-$timeraw = $_POST['t'];
-$convert = new DateTime($timeraw);
-$time = $convert->format('H:i:s');
+$time = $_POST['t'];
 $r1 = $_POST['R1'];
 $r2 = $_POST['R2'];
 $r3 = $_POST['R3'];
 $b1 = $_POST['B1'];
 $b2 = $_POST['B2'];
 $b3 = $_POST['B3'];
-echo $time;
 
-$sql = "INSERT INTO `event` (Match, time, R1, R2, R3, B1, B2, B3) VALUES ('" . $match . "', '" . $time . "', '" . $r1 . "', '" . $r2 . "', '" . $r3 . "', '" . $b1 . "', '" . $b2 . "', '" . $b3 . "')";
+
+$sql = "INSERT INTO `event` (`Match`, `time`, `R1`, `R2`, `R3`, `B1`, `B2`, `B3`) VALUES ('" . $match . "', '" . $time . "', '" . $r1 . "', '" . $r2 . "', '" . $r3 . "', '" . $b1 . "', '" . $b2 . "', '" . $b3 . "')";
 /*
 [Mon Mar 09 00:24:28.587589 2015] [:error] [pid 13777] [client 10.240.169.157:44876]
 PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct():
@@ -44,8 +42,10 @@ $con->query($sql);
 <head>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/dashboard.css" rel="stylesheet">
+<link href="../css/anytime.5.0.7.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js"></script>
+<script src="../js/anytime.5.0.7.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Dash</title>
 </head>
@@ -117,7 +117,7 @@ echo ' </tr>';
 <form action="" method="post">
 <tr>
 <td><input type="text" size="4" name="m"></td>
-<td><input type="text" size="4" name="t"></td>
+<td><input type="text" size="4" name="t" id="time"></td>
 <td class="danger"><input type="text" size="4" name="R1"></td>
 <td class="danger"><input type="text" size="4" name="R2"></td>
 <td class="danger"><input type="text" size="4" name="R3"></td>
@@ -129,5 +129,9 @@ echo ' </tr>';
 </form>
 </tbody>
 </table>
+<script>
+    $("#time").AnyTime_picker(
+    { format: " %l:%i %p" } );
+</script>
 </body>
 </html>
