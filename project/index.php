@@ -1,21 +1,32 @@
 <!DOCTYPE html>
-<?php include('weather.php'); ?>
 <html>
 	<head>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/countdown.js"></script>
 		<link href="css/weather-icons.min.css" rel="stylesheet">
 		<script>
-			$.get( "ajax/weather.php", function( data ) {
-				$( "#header-weather" ).html( data );
+			$(function() { // Only runs once on load
+				checkWeather();  // Check the weather
+				setInterval(function(){checkWeather()},600000); // Keep Checking
+				updateTeams();
 			});
+			function checkWeather() {
+				$.get( "ajax/weather.php", function( data ) {
+					$( "#header-weather" ).html( data );
+				});
+			}
+			function updateTeams() {
+				$.get( "ajax/match.php", function( data ) {
+					$( "#footer-table" ).html( data );
+				});
+			}
 		</script>
 		<style>
 			* {
 				margin: 0;
 				padding: 0;
 			}
-
+			
 			body {
 				font-family: Century Gothic;
 				background-color: black;
@@ -45,7 +56,6 @@
 				height: 100%;
 				float: right;
 				margin-top: 10px;
-				background-color: black;
 				text-align: center;
 			}
 			#header-weather-icon {
@@ -69,7 +79,11 @@
 				text-align: left;
 			}
 			#content {
-				
+				width: 100%;
+				position: fixed;
+				top: 150px;
+				color: white;
+				text-align: center;
 			}
 
 			#footer {
@@ -109,14 +123,11 @@
 			.blue {
 				background-color: blue;
 			}
-			.black {
-				background-color: black;
-			}
 			.now-playing {
 				width: 50%;
 				text-align: center;
 				font-size: 64pt;
-				/* font-weight: bold; (consider this?) */
+				font-weight: bold; /* (consider this?) It dosn't look the best, but i think it will help to see it from a distance */
 			}
 			#footer-now-playing {
 				border-spacing: 0;
@@ -125,44 +136,25 @@
 		</style>
 	</head>
 	
-	<body onload="checkWeather; setInterval(function(){checkWeather()},600000);">
+	<body>
+		<!--<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67">-->
 		<div id="header">
-		
 			<div id="header-brand">
 				<p>Predators</p>
 			</div>
-			
-			<div id="header-weather">
-			</div>
-			
+			<div id="header-weather"></div>
 		</div>
 
-		<div id="body" style="width: 100%; position: fixed; top: 200px; color: white; font-size: 36pt;  text-align: center;">
-		
-			<span id="body-time-left" style="font-size: 128pt;">27:01</span><br><span id="body-until-match" style="font-size: 18pt;">UNTIL MATCH 12</span>
-		
+		<div id="content">
+			<span id="body-time-left" style="font-size: 192pt;">27:01</span><br>
+			<span id="body-until-match" style="font-size: 18pt;">UNTIL MATCH 12</span>
 		</div>
 		
 		<div id="footer">
 			<div id="footer-logo">
 				<img src="predator-head.png" />
 			</div>
-			<div id="footer-table">
-				<table id="footer-now-playing">
-					<tr>
-						<td class="now-playing red">4665</td>
-						<td class="now-playing blue">3232</td>
-					</tr>
-					<tr>
-						<td class="now-playing red">4242</td>
-						<td class="now-playing blue">2169</td>
-					</tr>
-					<tr>
-						<td class="now-playing red">3633</td>
-						<td class="now-playing blue">4945</td>
-					</tr>
-				</table>
-			</div>
+			<div id="footer-table"></div>
 
 		</div>
 		
