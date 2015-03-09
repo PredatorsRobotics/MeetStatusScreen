@@ -1,4 +1,4 @@
-<?php $con=mysqli_connect("localhost","battery","robot","Test");
+<?php $con=mysqli_connect("127.0.0.1","mss","robot","mss");
 
 $date = date ('H:i:s');
 
@@ -18,16 +18,25 @@ $match = $_POST['m'];
 $timeraw = $_POST['t'];
 $convert = new DateTime($timeraw);
 $time = $convert->format('H:i:s');
-$r1 = $_POST['r1'];
-$r2 = $_POST['r2'];
-$r3 = $_POST['r3'];
-$b1 = $_POST['b1'];
-$b2 = $_POST['b2'];
-$b3 = $_POST['b3'];
+$r1 = $_POST['R1'];
+$r2 = $_POST['R2'];
+$r3 = $_POST['R3'];
+$b1 = $_POST['B1'];
+$b2 = $_POST['B2'];
+$b3 = $_POST['B3'];
+echo $time;
 
-$sql = "INSERT INTO `event` (`match`, `time`, `r1`, `r2`, `r3`, `b1`, `b2`, `b3`)
-VALUES ('" . $match . "', '" . $time . "', '" . $r1 . "', '" . $r2 . "', '" . $r3 . "', '" . $b1 . "', '" . $b2 . "', '" . $b3 . "')";
-
+$sql = "INSERT INTO `event` (Match, time, R1, R2, R3, B1, B2, B3) VALUES ('" . $match . "', '" . $time . "', '" . $r1 . "', '" . $r2 . "', '" . $r3 . "', '" . $b1 . "', '" . $b2 . "', '" . $b3 . "')";
+/*
+[Mon Mar 09 00:24:28.587589 2015] [:error] [pid 13777] [client 10.240.169.157:44876]
+PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct():
+Failed to parse time string (1) at position 0 (1): Unexpected character' in
+/home/ubuntu/workspace/project/dash/index.php:19
+Stack trace:
+#0 /home/ubuntu/workspace/project/dash/index.php(19): DateTime->__construct('1')
+#1 {main}
+thrown in /home/ubuntu/workspace/project/dash/index.php on line 19, referer: https://meetstatusscreen-chandlerswift.c9.io/project/dash/
+*/
 $con->query($sql);
 }
 ?>
@@ -109,12 +118,12 @@ echo ' </tr>';
 <tr>
 <td><input type="text" size="4" name="m"></td>
 <td><input type="text" size="4" name="t"></td>
-<td class="danger"><input type="text" size="4" name="r1"></td>
-<td class="danger"><input type="text" size="4" name="r2"></td>
-<td class="danger"><input type="text" size="4" name="r3"></td>
-<td class="info"><input type="text" size="4" name="b1"></td>
-<td class="info"><input type="text" size="4" name="b2"></td>
-<td class="info"><input type="text" size="4" name="b3"></td>
+<td class="danger"><input type="text" size="4" name="R1"></td>
+<td class="danger"><input type="text" size="4" name="R2"></td>
+<td class="danger"><input type="text" size="4" name="R3"></td>
+<td class="info"><input type="text" size="4" name="B1"></td>
+<td class="info"><input type="text" size="4" name="B2"></td>
+<td class="info"><input type="text" size="4" name="B3"></td>
 <td><input type="submit" value="Add" class='btn btn-default'></td>
 </tr>
 </form>
