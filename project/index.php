@@ -6,13 +6,29 @@
 		<link href="css/weather-icons.min.css" rel="stylesheet">
 		<script>
 			$(function() { // Only runs once on load
-				checkWeather();  // Check the weather
-				setInterval(function(){checkWeather()},600000); // Keep Checking
+				checkWeather();
+				setInterval(function(){checkWeather()},600000);
+				updateTime();
+				setInterval(function(){updateTime()},200);
 				updateTeams();
+				setInterval(function(){updateTeams()},5000);
+				updateNum();
 			});
 			function checkWeather() {
 				$.get( "ajax/weather.php", function( data ) {
 					$( "#header-weather" ).html( data );
+				});
+			}
+			function updateTime() {
+				$.get( "ajax/match.php?time", function( data ) {
+					$( "#body-time-left" ).html( data );
+				});
+			}
+			function updateNum() {
+				$.get( "ajax/match.php?match", function( data ) {
+					$( "#body-until-match" ).text(function(){
+            			return "UNTIL MATCH " + data;
+        			});
 				});
 			}
 			function updateTeams() {
@@ -22,15 +38,12 @@
 			}
 		</script>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-			}
-			
 			body {
 				font-family: Century Gothic;
 				background-color: black;
 				color: white;
+				margin: 0;
+				padding: 0;
 			}
 
 			#header {
@@ -81,7 +94,7 @@
 			#content {
 				width: 100%;
 				position: fixed;
-				top: 150px;
+				top: 75px;
 				color: white;
 				text-align: center;
 			}
@@ -146,8 +159,8 @@
 		</div>
 
 		<div id="content">
-			<span id="body-time-left" style="font-size: 192pt;">27:01</span><br>
-			<span id="body-until-match" style="font-size: 18pt;">UNTIL MATCH 12</span>
+			<span id="body-time-left" style="font-size: 192pt;"></span><br>
+			<span id="body-until-match" style="font-size: 18pt;"></span>
 		</div>
 		
 		<div id="footer">
@@ -155,7 +168,6 @@
 				<img src="predator-head.png" />
 			</div>
 			<div id="footer-table"></div>
-
 		</div>
 		
 	</body>
