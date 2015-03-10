@@ -15,7 +15,10 @@ if(! $retval )
 
 if(isset($_POST['m'])){
 $match = $_POST['m'];
-$time = $_POST['t'];
+$timeraw = $_POST['t'];
+$timeraw = $_POST['t'];
+$convert = new DateTime($timeraw);
+$time = $convert->format('H:i:s');
 $r1 = $_POST['R1'];
 $r2 = $_POST['R2'];
 $r3 = $_POST['R3'];
