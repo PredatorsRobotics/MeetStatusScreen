@@ -5,16 +5,17 @@
 		<script src="js/countdown.js"></script>
 		<link href="css/weather-icons.min.css" rel="stylesheet">
 		<script>
+			var isTimeoutSet = "no";
+			var hadPM = false;
 			$(function() { // Only runs once on load
-				checkWeather();
-				setInterval(function(){checkWeather()},600000);
+				updateWeather();
+				setInterval(updateWeather,60000); // One Minute
 				updateTime();
-				setInterval(function(){updateTime()},200);
+				setInterval(updateTime,200);
 				updateTeams();
-				setInterval(function(){updateTeams()},5000);
-				updateNum();
+				updateNum(); // Get Match Number
 			});
-			function checkWeather() {
+			function updateWeather() {
 				$.get( "ajax/weather.php", function( data ) {
 					$( "#header-weather" ).html( data );
 				});
@@ -22,13 +23,30 @@
 			function updateTime() {
 				$.get( "ajax/match.php?time", function( data ) {
 					$( "#body-time-left" ).html( data );
+					if (data == "0:01") {
+					    if (isTimeoutSet == "no") {
+							setTimeout(updateAll, 1200);
+							isTimeoutSet = "yes";
+						}
+					}
+					if (hadPM == true) {
+						if (!/\b>/.test(data)) { // If we're here, hadPM just turned false.
+							hadPM = false;       // Therefore, make it so!
+							updateAll();         // Then do what we came here to do.
+						}                        // (Implied:) Otherwise, Leave it alone.
+					} else {
+						hadPM = /\b>/.test(data);
+					}
 				});
 			}
-			function updateNum() {
+			function updateAll() { // Not including Time
+				updateTeams(); // Team Table List
+				updateNum(); // Upcoming Match Number
+				isTimeoutSet = "no";
+			}
+			function updateNum() { // Get Match Number
 				$.get( "ajax/match.php?match", function( data ) {
-					$( "#body-until-match" ).text(function(){
-            			return "UNTIL MATCH " + data;
-        			});
+					$( "#body-until-match" ).html( data);
 				});
 			}
 			function updateTeams() {
@@ -94,7 +112,7 @@
 			#content {
 				width: 100%;
 				position: fixed;
-				top: 75px;
+				top: 150px;
 				color: white;
 				text-align: center;
 			}
