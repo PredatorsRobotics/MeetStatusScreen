@@ -29,13 +29,9 @@
 							isTimeoutSet = "yes";
 						}
 					}
-					if (hadPM == true) {
-						if (!/\b>/.test(data)) { // If we're here, hadPM just turned false.
-							hadPM = false;       // Therefore, make it so!
-							updateAll();         // Then do what we came here to do.
-						}                        // (Implied:) Otherwise, Leave it alone.
-					} else {
-						hadPM = /\b>/.test(data);
+					if (hadPM != /\b>/.test(data)) { // The clock just switched on or off.
+						hadPM = !hadPM;              // So let's switch it.
+							updateAll();             // Our other information
 					}
 				});
 			}
