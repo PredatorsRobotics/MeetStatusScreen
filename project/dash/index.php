@@ -67,6 +67,7 @@ $con->query($sql);
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="editsettings.php">Settings</a></li>
             <li><a href="">Refresh</a></li>
           </ul>
         </div>
