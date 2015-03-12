@@ -3,7 +3,26 @@ $con=mysqli_connect("127.0.0.1","mss","robot","mss");
 
 $date = date('H:i:s');
 
+$clock = date('g:i');
+$clock2 = date('A');
+
 $result = mysqli_query($con,"SELECT * FROM `event` WHERE time > '$date' ORDER BY time DESC");
+
+if(mysqli_num_rows($result)==0) {
+		if(isset($_GET['match'])){
+			echo 'No Match Scheduled';
+			die;
+		}
+		
+		if(isset($_GET['time'])){
+			echo $clock . ' <span style="font-size: 100pt;">' . $clock2 . '</span>';
+			die;
+		}
+		die;
+     }
+
+
+
 
 while($row = mysqli_fetch_array($result)) {
 	$R1 = $row['R1'];
@@ -25,7 +44,7 @@ $interval = $datetime1->diff($datetime2);
 $time = $interval->format('%i:%S');
 
 if(isset($_GET['match'])){
-	echo $M;
+	echo 'UNTIL MATCH ' . $M;
 	die;
 }
 
