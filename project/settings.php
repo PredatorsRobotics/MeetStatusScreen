@@ -1,6 +1,6 @@
-<?php
-$city = 'Minneapolis';
-$state = 'MN';
-$unit = 'F';
-$teamnum = 4665;
-?>
+<?php 
+  $team = "4665";
+  $city = "Glencoe";
+  $state = "MN";
+  $unit = "F";
+  ?>
