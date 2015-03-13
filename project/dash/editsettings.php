@@ -1,3 +1,36 @@
+<?php
+
+if(isset($_POST['team'])){
+  
+  $team = $_POST['team'];
+  
+  $city = $_POST['city'];
+  
+  $state = $_POST['state'];
+  
+  $unit = $_POST['unit'];
+  
+  $config = '<?php 
+  $team = "' . $team . '";
+  $city = "' . $city . '";
+  $state = "' . $state . '";
+  $unit = "' . $unit . '";
+  ?>';
+
+  /* Write Variables to file */
+  $fp = fopen("../settings.php", "w");
+  fwrite($fp, $config);
+  fclose($fp);
+  include_once "../includes/config.php" ;
+  
+  header( "refresh:0");
+  
+}else{
+  include("../settings.php");
+}
+
+
+?>
 <html>
   <head>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +57,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="../">Display</a></li>
             <li><a href="index.php">Matches</a></li>
           </ul>
         </div>
@@ -46,22 +80,22 @@
                   <tbody>
                     <tr>
                       <td>Team Number</td>
-                      <td><input type="text" name="team" value="4665"></td>
+                      <td><input type="text" name="team" value="<?php echo $team; ?>"></td>
                       <td><input type="submit" class='btn btn-default'/></td>
                     </tr>
                     <tr>
                       <td>City</td>
-                      <td><input type="text" name="city" value="Glencoe"></td>
+                      <td><input type="text" name="city" value="<?php echo $city; ?>"></td>
                       <td><input type="submit" class='btn btn-default'/></td>
                     </tr>
                     <tr>
                       <td>State</td>
-                      <td><input type="text" name="state" value="MN"></td>
+                      <td><input type="text" name="state" value="<?php echo $state; ?>"></td>
                       <td><input type="submit" class='btn btn-default'/></td>
                     </tr>
                     <tr>
                       <td>Weather Unit</td>
-                      <td><input type="text" name="unit" value="F"></td>
+                      <td><input type="text" name="unit" value="<?php echo $unit; ?>"></td>
                       <td><input type="submit" class='btn btn-default'/></td>
                     </tr>
                   </tbody>
