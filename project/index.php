@@ -18,6 +18,9 @@
 			function updateWeather() {
 				$.get( "ajax/weather.php", function( data ) {
 					$( "#header-weather" ).html( data );
+					if (/alien/.test(data)) {			// If "Alien" is found in the data, then there is an error.
+					setTimeout(updateWeather,1000);		// Try again in a second.
+					}
 				});
 			}
 			function updateTime() {
