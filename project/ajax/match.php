@@ -41,7 +41,17 @@ $datetime2 = new DateTime(date('G:i:s'));
 
 $interval = $datetime1->diff($datetime2);
 
-$time = $interval->format('%i:%S');
+$timewoh = $interval->format('%i:%S');
+
+$timeh = $interval->format('%H');
+
+$time = $interval->format('%h:%I:%S');
+
+if($timeh == 00){
+	$display = $timewoh;
+}else{
+	$display = $time;
+}
 
 if(isset($_GET['match'])){
 	echo 'UNTIL MATCH ' . $M;
@@ -49,7 +59,7 @@ if(isset($_GET['match'])){
 }
 
 if(isset($_GET['time'])){
-	echo $time;
+	echo $display;
 	die;
 }
 
