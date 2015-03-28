@@ -21,12 +21,16 @@ If you want to host it locally during competition, we use [easyPHP](http://www.e
 To customize your team information, you'll need to change the logo.php file and customize the information in settings.php:
 ```php
 <?php
-  $team = "4665"; //This should be your FRC team number
+  $team = "4665"; // This should be your FRC team number
+  $timezone = "America/Chicago"; // Time zone for clock setting in PHP
   $city = "Glencoe"; //The city for your weather data
   $state = "MN"; // The state for your weather data
   $unit = "F"; // The unit for your temperature; C(elsius), R(ankine), F(arenheit), or K(elvin)
+  date_default_timezone_set($timezone); // A bit of ignorable code to make the above work
 ?>
 ```
+Also, you'll need to edit the database information found in ```match.php``` and ```dash/index.php``` to make these work with your mySQL database configuration.
+
 Lastly, if you do use this, please let us know at gslrobotics@gmail.com. We'd love to know who's making use of our projects!
 
 ###Contributing
