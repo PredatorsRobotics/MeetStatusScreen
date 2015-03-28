@@ -2,6 +2,8 @@
 
 if(isset($_POST['team'])){
   
+  $timezone = $_POST['timezone'];
+  
   $team = $_POST['team'];
   
   $city = $_POST['city'];
@@ -10,11 +12,13 @@ if(isset($_POST['team'])){
   
   $unit = $_POST['unit'];
   
-  $config = '<?php 
+  $config = '<?php
+  $timezone = "' . $timezone . '";
   $team = "' . $team . '";
   $city = "' . $city . '";
   $state = "' . $state . '";
   $unit = "' . $unit . '";
+  date_default_timezone_set($timezone);
   ?>';
 
   /* Write Variables to file */
@@ -81,6 +85,11 @@ if(isset($_POST['team'])){
                     <tr>
                       <td>Team Number</td>
                       <td><input type="text" name="team" value="<?php echo $team; ?>"></td>
+                      <td><input type="submit" class='btn btn-default'/></td>
+                    </tr>
+                    <tr>
+                      <td><a href="http://php.net/manual/en/timezones.php">Time Zone</a></td>
+                      <td><input type="text" name="timezone" value="<?php echo $timezone; ?>"></td>
                       <td><input type="submit" class='btn btn-default'/></td>
                     </tr>
                     <tr>
