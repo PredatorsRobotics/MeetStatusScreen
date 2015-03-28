@@ -1,4 +1,5 @@
 <?php
+include '../settings.php';
 $con=mysqli_connect("127.0.0.1","mss","robot","mss");
 
 $date = date('H:i:s');
