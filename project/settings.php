@@ -1,8 +1,8 @@
 <?php
-  $timezone = "America/Chicago";
-  $team = "4665";
-  $city = "Glencoe";
-  $state = "MN";
-  $unit = "F";
-  date_default_timezone_set($timezone);
-  ?>
+  $team = "4665"; // This should be your FRC team number
+  $timezone = "America/Chicago"; // Time zone for clock setting in PHP
+  $city = "Glencoe"; //The city for your weather data
+  $state = "MN"; // The state for your weather data
+  $unit = "F"; // The unit for your temperature; C(elsius), R(ankine), F(arenheit), or K(elvin)
+  date_default_timezone_set($timezone); // A bit of ignorable code to make the above work
+?>
