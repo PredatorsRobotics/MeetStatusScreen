@@ -87,12 +87,12 @@ $con->query($sql);
 <tr>
 <th>Match</th>
 <th>Time</th>
-<th>Red 1</th>
-<th>Red 2</th>
-<th>Red 3</th>
 <th>Blue 1</th>
 <th>Blue 2</th>
 <th>Blue 3</th>
+<th>Red 1</th>
+<th>Red 2</th>
+<th>Red 3</th>
 <th>Options</th>
 </tr>
 </thead>
@@ -111,12 +111,12 @@ $raw = $row['time'];
 $convert = new DateTime($raw);
 $time = $convert->format('h:i A');
 echo '<td>' . $time . '</td>';
-echo '<td>' . $row['R1'] . '</td>';
-echo '<td>' . $row['R2'] . '</td>';
-echo '<td>' . $row['R3'] . '</td>';
 echo '<td>' . $row['B1'] . '</td>';
 echo '<td>' . $row['B2'] . '</td>';
 echo '<td>' . $row['B3'] . '</td>';
+echo '<td>' . $row['R1'] . '</td>';
+echo '<td>' . $row['R2'] . '</td>';
+echo '<td>' . $row['R3'] . '</td>';
 echo "<td><a href='?d=" . $row['ID'] . "' class='btn btn-default'>Delete</a></td>";
 echo ' </tr>';
 }
@@ -125,12 +125,12 @@ echo ' </tr>';
 <tr>
 <td><input type="text" size="4" name="m"></td>
 <td><input type="text" size="4" name="t" id="time"></td>
-<td class="danger"><input type="text" size="4" name="R1"></td>
-<td class="danger"><input type="text" size="4" name="R2"></td>
-<td class="danger"><input type="text" size="4" name="R3"></td>
 <td class="info"><input type="text" size="4" name="B1"></td>
 <td class="info"><input type="text" size="4" name="B2"></td>
 <td class="info"><input type="text" size="4" name="B3"></td>
+<td class="danger"><input type="text" size="4" name="R1"></td>
+<td class="danger"><input type="text" size="4" name="R2"></td>
+<td class="danger"><input type="text" size="4" name="R3"></td>
 <td><input type="submit" value="Add" class='btn btn-default'></td>
 </tr>
 </form>

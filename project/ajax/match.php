@@ -55,8 +55,13 @@ if($timeh == 00){
 }
 
 if(isset($_GET['match'])){
-	echo 'UNTIL MATCH ' . $M;
-	die;
+	if(ctype_digit($M)){
+		echo 'UNTIL MATCH ' . $M;
+		die;
+	}else{
+		echo $M;
+		die;
+	}
 }
 
 if(isset($_GET['time'])){
@@ -67,18 +72,21 @@ if(isset($_GET['time'])){
 include("../settings.php");
 ?>
 
-<?php /* Only echo this this if not requesting time or match: */ ?>
+<?php /* Only echo this this if not requesting time or match: */
+if(ctype_digit($M)){
+?>
 <table id="footer-now-playing">
 	<tr>
-		<td class="now-playing red <?php if($R1 == $team){ echo "border"; } ?>"><?php echo $R1; ?></td>
 		<td class="now-playing blue <?php if($B1 == $team){ echo "border"; } ?>"><?php echo $B1; ?></td>
+		<td class="now-playing red <?php if($R1 == $team){ echo "border"; } ?>"><?php echo $R1; ?></td>
 	</tr>
 	<tr>
-		<td class="now-playing red <?php if($R2 == $team){ echo "border"; } ?>"><?php echo $R2; ?></td>
 		<td class="now-playing blue <?php if($B2 == $team){ echo "border"; } ?>"><?php echo $B2; ?></td>
+		<td class="now-playing red <?php if($R2 == $team){ echo "border"; } ?>"><?php echo $R2; ?></td>
 	</tr>
 	<tr>
-		<td class="now-playing red <?php if($R3 == $team){ echo "border"; } ?>"><?php echo $R3; ?></td>
 		<td class="now-playing blue <?php if($B3 == $team){ echo "border"; } ?>"><?php echo $B3; ?></td>
+		<td class="now-playing red <?php if($R3 == $team){ echo "border"; } ?>"><?php echo $R3; ?></td>
 	</tr>
 </table>
+<?php } ?>
