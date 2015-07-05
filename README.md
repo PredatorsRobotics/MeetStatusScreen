@@ -18,7 +18,7 @@ To Use MeetStatusScreen, either download the release or the current source code.
 
 If you want to host it locally during competition, we use [easyPHP](http://www.easyphp.org/) to host our project to localhost, and use [Ngrok](http://www.ngrok.com/) to access the dash remotely.
 
-To customize your team information, you'll need to change the logo.php file and customize the information in settings.php:
+To customize your team information, you'll need to change the logo.png file and customize the information in settings.php:
 ```php
 <?php
   $team = "4665"; // This should be your FRC team number
