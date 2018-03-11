@@ -1,9 +1,11 @@
 <?php
 	
-	include '../settings.php';
+	include '../functions.php';
 	
-	$url = "http://api.openweathermap.org/data/2.5/weather?q=" . $city  . "," . $state;
+	$zip = weather('zip');
 	
+	$url = "http://api.openweathermap.org/data/2.5/weather?q=" . $zip . "&appid=" . $weather_api_key;
+	echo "<script>console.log('$url');</script>";
 	$json = file_get_contents($url);
 	$data = json_decode($json, TRUE);
 	
@@ -93,7 +95,7 @@
 					<?php echo $temp; ?>
 					</div>
 					<div id="header-weather-location">
-						<?php echo $city . ', ' . $state; ?>
+						<?php echo weather('city') . ', ' . weather('state'); ?>
 						<br>
 						<?php echo $description; ?>
 					</div>
