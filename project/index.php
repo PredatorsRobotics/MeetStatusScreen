@@ -177,7 +177,7 @@
 	<body>
 		<a href="dash"><div id="header">
 			<div id="header-brand">
-				<p>Predators - <?php include("settings.php"); echo $team; ?></p>
+				<p><?php include("functions.php"); echo teamData()['nickname']; ?> - <?php echo $team; ?></p>
 			</div>
 			<div id="header-weather"></div>
 		</div></a>
